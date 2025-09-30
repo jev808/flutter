@@ -12,131 +12,84 @@ class ServicesPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Profile Card Layout
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const CircleAvatar(
-                      radius: 40,
-                      backgroundColor: Colors.blue,
-                      child: Icon(Icons.person, size: 40, color: Colors.white),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Bryan Emmanuel, Master Locksmith',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          const Row(
-                            children: [
-                             
-                              SizedBox(width: 8),
-                              Text('bryan@gmail.com'),
-                            ],
-                          ),
-                          const SizedBox(height: 4),
-                          const Row(
-                            children: [
-                              
-                              SizedBox(width: 8),
-                              Text('+63 900 000 0000'),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-            // Chat Bubble UI (step 9): Container with padding, margin, rounded borders, no icons
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+            // Top: Residential and Automotive
+            Row(
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
+                Expanded(
                   child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(16),
+                    color: const Color(0xFFB3D8FD), // light blue
+                    height: 60,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'Residential',
+                      style: TextStyle(fontSize: 18, color: Colors.black54),
                     ),
-                    child: const Text("Hi, How are you"),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.centerRight,
+                Expanded(
                   child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.blue[100],
-                      borderRadius: BorderRadius.circular(16),
+                    color: const Color(0xFFC8E6C9), // light green
+                    height: 60,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'Automotive',
+                      style: TextStyle(fontSize: 18, color: Colors.black54),
                     ),
-                    child: const Text("Hello, Im fine thank you"),
                   ),
                 ),
               ],
             ),
-            
             const SizedBox(height: 24),
-            // Flexible Column for Services
             const Text(
               'Our Services',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
+            // Residential locksmith services list
             Card(
               child: Column(
-                children: [
+                children: const [
                   ListTile(
-                    title: const Text('Residential Locksmith'),
-                    
+                    title: Text('Lock Installation'),
                   ),
-                  const Divider(),
+                  Divider(),
                   ListTile(
-                    title: const Text('Commercial Locksmith'),
-                  
+                    title: Text('Lock Repair'),
                   ),
-                  const Divider(),
+                  Divider(),
                   ListTile(
-                    title: const Text('Car Lockout Services'),
-                    
+                    title: Text('Home Lockout Assistance'),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text('Rekeying Services'),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text('Smart Lock Setup'),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 24),
-          // Service Categories Grid
-          GridView.count(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            crossAxisCount: 2,
-            mainAxisSpacing: 16,
-            crossAxisSpacing: 16,
-            children: [
-              ServiceCategoryCard(title: 'Installation', icon: Icons.build),
-              ServiceCategoryCard(title: 'Repair', icon: Icons.handyman),
-              ServiceCategoryCard(title: 'Emergency', icon: Icons.emergency),
-              ServiceCategoryCard(title: 'Key Duplication', icon: Icons.key),
-            ],
-          ),
-        ],
+            // Automotive locksmith services grid
+            GridView.count(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisCount: 2,
+              mainAxisSpacing: 16,
+              crossAxisSpacing: 16,
+              children: [
+                ServiceCategoryCard(title: 'Car Key Replacement', icon: Icons.vpn_key),
+                ServiceCategoryCard(title: 'Ignition Repair', icon: Icons.settings),
+                ServiceCategoryCard(title: 'Car Lockout', icon: Icons.directions_car),
+                ServiceCategoryCard(title: 'Transponder Key Programming', icon: Icons.phonelink_lock),
+              ],
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
   }
 }
 

@@ -1,3 +1,4 @@
+import '../main.dart';
 import 'package:flutter/material.dart';
 import '../widgets/custom_button.dart';
 
@@ -120,7 +121,12 @@ class _HomePageState extends State<HomePage> {
                   width: 220,
                   child: CustomButton(
                     label: 'Contact Us',
-                    onPressed: () {},
+                    onPressed: () {
+                      // Navigate to Contacts tab in MainNavigation
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => MainNavigationInitialTab(tabIndex: 2)),
+                      );
+                    },
                   ),
                 ),
               ],
@@ -155,26 +161,7 @@ class _HomePageState extends State<HomePage> {
             ),
 
 
-            // Responsive Row with Expanded
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    height: 80,
-                    color: Colors.blue[100],
-                    child: const Center(child: Text('Residential')),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    height: 80,
-                    color: Colors.green[100],
-                    child: const Center(child: Text('Automotive')),
-                  ),
-                ),
-              ],
-            ),
-
+          
 
             // ...existing code...
 

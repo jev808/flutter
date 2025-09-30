@@ -1,11 +1,23 @@
+
 import 'package:flutter/material.dart';
 import 'views/home_page.dart';
 import 'views/services_page.dart';
+import 'views/contacts_page.dart';
+
+// Helper widget to allow navigation to a specific tab in MainNavigation
+class MainNavigationInitialTab extends StatelessWidget {
+  final int tabIndex;
+  const MainNavigationInitialTab({Key? key, required this.tabIndex}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MainNavigation(initialTab: tabIndex);
+  }
+}
 
 void main() {
   runApp(const LocksmithyApp());
 }
-
 class ThreeTextRow extends StatelessWidget {
   const ThreeTextRow({super.key});
   @override
@@ -44,15 +56,23 @@ class LocksmithyApp extends StatelessWidget {
   }
 }
 
+
 class MainNavigation extends StatefulWidget {
-  const MainNavigation({super.key});
+  final int initialTab;
+  const MainNavigation({super.key, this.initialTab = 0});
 
   @override
   State<MainNavigation> createState() => _MainNavigationState();
 }
 
 class _MainNavigationState extends State<MainNavigation> {
-  int _selectedIndex = 0;
+  late int _selectedIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.initialTab;
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -62,10 +82,13 @@ class _MainNavigationState extends State<MainNavigation> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _pages = [
+      HomePage(onViewServices: () => _onItemTapped(1)),
+      ServicesPage(),
+      ContactsPage(),
+    ];
     return Scaffold(
-      body: _selectedIndex == 0
-          ? HomePage(onViewServices: () => _onItemTapped(1))
-          : ServicesPage(),
+      body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
@@ -77,6 +100,10 @@ class _MainNavigationState extends State<MainNavigation> {
           BottomNavigationBarItem(
             icon: Icon(Icons.build),
             label: 'Services',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.contacts),
+            label: 'Contacts',
           ),
         ],
       ),
